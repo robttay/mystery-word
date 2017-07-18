@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="./main.css" rel="stylesheet">
+    </head>
+    <body>
+        <section class="top">
+            <h1>Mystery Word</h1><br>
+            <div class="center">{{#gamemode}}{{.}} Mode{{/gamemode}}</div>
+            <div class="right">{{#guess}}You have {{.}} guesses left!{{/guess}}
+        {{^gamemode}}
+        <br>
+            <form method="POST" action="/" class="type_form"> 
+                <p><input type="radio" name="mode" value="Easy"> Easy</p>
+                <p><input type="radio" name="mode" value="Normal"> Normal</p>
+                <p><input type="radio" name="mode" value="Hard"> Hard</p> 
+                <p><input type="submit"></p>
+            </form>
+        </section>
+        {{/gamemode}}
+        {{#gamemode}}
+        {{#broken}}
+            <section class="errors">
+                <h3>{{msg}}</h3>
+            </section>
+        {{/broken}}
+        <section class="hangman">
+            {{#hangman}}{{{.}}}{{/hangman}}
+        </section>
+        <section class="game">
+            <form method="POST" action="/">
+            {{#solved}}
+                <div class="output">
+                {{#lost}}
+                    <h3>You lose!  Play again?</h3><input type="hidden" name="status" value="lost"><input type="submit">
+                {{/lost}}     
+                {{^lost}}
+                    <h3>You win! Play again?</h3><input type="hidden" name="status" value="win"><input type="submit">
+                {{/lost}}
+                </div>
+            {{/solved}}
+            {{^solved}}
+            <div>
+                <input class="letter_input" type="text" name="choice">
+                <input type="submit">
+            </div>
+            {{/solved}}
+            </form>
+        </section>
+        {{/gamemode}}
+        <section class="letters">
+            {{#gamemode}}
+            <p>Letters Guessed: {{guessedLetters}} 
+                {{^guessedLetters}}
+                None 
+                {{/guessedLetters}}</p>
+            {{/gamemode}}
+        </section>
+    </body>
+</html>

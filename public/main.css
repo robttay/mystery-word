@@ -1,0 +1,16 @@
+/*  */
+body {
+  background: #26bcc9;
+  font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+  column-rule: darkblue;
+}
+
+.top {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+h1 {
+  font-size: 24px;
+}
